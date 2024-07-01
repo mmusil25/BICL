@@ -29,11 +29,12 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import secrets
+
 __version__ = "0.7.2"
 
 import copy
 import csv
-import random
 import re
 import sys
 import textwrap
@@ -791,15 +792,15 @@ class PrettyTable(object):
     def _set_random_style(self):
 
         # Just for fun!
-        self.header = random.choice((True, False))
-        self.border = random.choice((True, False))
-        self._hrules = random.choice((ALL, FRAME, HEADER, NONE))
-        self._vrules = random.choice((ALL, FRAME, NONE))
-        self.left_padding_width = random.randint(0,5)
-        self.right_padding_width = random.randint(0,5)
-        self.vertical_char = random.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
-        self.horizontal_char = random.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
-        self.junction_char = random.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
+        self.header = secrets.choice((True, False))
+        self.border = secrets.choice((True, False))
+        self._hrules = secrets.choice((ALL, FRAME, HEADER, NONE))
+        self._vrules = secrets.choice((ALL, FRAME, NONE))
+        self.left_padding_width = secrets.SystemRandom().randint(0,5)
+        self.right_padding_width = secrets.SystemRandom().randint(0,5)
+        self.vertical_char = secrets.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
+        self.horizontal_char = secrets.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
+        self.junction_char = secrets.choice("~!@#$%^&*()_+|-=\{}[];':\",./;<>?")
 
     ##############################
     # DATA INPUT METHODS         #
