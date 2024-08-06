@@ -23,6 +23,7 @@ from . import etree as etree_builders
 from .. import _ihatexml
 
 import lxml.etree as etree
+import lxml.etree
 
 
 fullTree = True
@@ -336,7 +337,7 @@ class TreeBuilder(base.TreeBuilder):
             if self.doctype.name != token["name"]:
                 warnings.warn("lxml cannot represent doctype with a different name to the root element", DataLossWarning)
         docStr += "<THIS_SHOULD_NEVER_APPEAR_PUBLICLY/>"
-        root = etree.fromstring(docStr)
+        root = etree.fromstring(docStr, parser=lxml.etree.XMLParser(resolve_entities=False))
 
         # Append the initial comments:
         for comment_token in self.initial_comments:
