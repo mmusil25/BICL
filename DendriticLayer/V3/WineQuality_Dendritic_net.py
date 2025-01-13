@@ -9,17 +9,17 @@ Code Source:
 https://github.com/rianrajagede/iris-python/blob/master/Python/iris_plain_mlp.py
 """
 from typing import List
+import secrets
 
 """
 SECTION 1 : Load and setup data for training
 """
 
 import csv
-import random
 import math
 import numpy as np
 
-random.seed(123)
+secrets.SystemRandom().seed(123)
 
 # Load dataset
 with open('./winequality-white.csv') as csvfile:
@@ -34,7 +34,7 @@ for row in dataset:
     # print(["row", row])
 
 # Split x and y (feature and target)
-random.shuffle(dataset)
+secrets.SystemRandom().shuffle(dataset)
 datatrain = dataset[:int(len(dataset) * 0.8)]
 datatest = dataset[int(len(dataset) * 0.8):]
 train_X = [data[:11] for data in datatrain]
@@ -162,11 +162,11 @@ bias_2 = [0 for i in range(neuron[2])]
 # Initiate weight with random between -1.0 ... 1.0
 for i in range(neuron[0]):
     for j in range(neuron[1]):
-        weight[i][j] = 2*random.gauss(0, 1) - 1
+        weight[i][j] = 2*secrets.SystemRandom().gauss(0, 1) - 1
 
 for i in range(neuron[1]):
     for j in range(neuron[2]):
-        weight_2[i][j] = 2*random.gauss(0, 1) - 1
+        weight_2[i][j] = 2*secrets.SystemRandom().gauss(0, 1) - 1
 
 for e in range(epoch):
     cost_total = 0
